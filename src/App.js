@@ -54,7 +54,7 @@ const epicMiddleware = createEpicMiddleware(rootEpic)
 
 const ChatComponent = ChatConnectionFactory(ChatView)
 
-const store = createStore(
+export const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(epicMiddleware))
 )

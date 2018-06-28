@@ -4,10 +4,8 @@ import { connect } from 'react-redux'
 import { MessagesView } from './MessagesView.js'
 import { ScrollToBottom } from '../blocks/ScrollToBottom.js'
 
-const ChatView = (props) => {
-  const { store } = props
-
-  const { setMsg, sendMsg } = props.store
+const ChatView = (store) => {
+  const { setMsg, sendMsg } = store
 
   const value = store.chat.text
   const messages = store.chat.chatMsgs || []

@@ -7,7 +7,7 @@ import { from } from 'most'
 import { conn, stream } from '../state-managment/sources/chat.js'
 
 const ChatConnection = View => store => (
-  <View store={store} />
+  <View {...store} />
 )
 
 const ChatConnectionFactory = view =>
