@@ -23,3 +23,8 @@ test('Component2 also contains proper header', (t) => {
 
   t.is(wrapper.contains(<h2>{ sampleHeaderText }</h2>), true)
 })
+
+const author = 'dupa';
+test('Test lube', (t) => {
+
+})

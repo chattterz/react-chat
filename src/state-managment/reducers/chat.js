@@ -5,6 +5,7 @@ import {
 const startState = {
   text: '',
   send: '',
+  author: '',
   chatMsgs: []
 }
 
@@ -15,10 +16,16 @@ const chat = (state = startState, action) => {
       ...state,
       text: action.text
     }
+  case 'SET_AUTHOR':
+    return {
+      ...state,
+      author: action.author
+    }
   case 'SEND_MSG':
     return {
       ...state,
-      send: action.text
+      send: action.text,
+
     }
   case 'CLEAR_SEND_MSG':
     return {
