@@ -7,8 +7,6 @@ import ListItemText from '@material-ui/core/ListItemText'
 const MsgView = ({ msg, time, author }) => {
   return (
     <ListItem key={msg + time.getTime()}>
-      <ListItemText secondary={msg} />
-
       <ListItemText primary={author}
                     secondary={msg} />
     </ListItem>

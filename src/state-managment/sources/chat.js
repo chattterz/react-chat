@@ -1,6 +1,6 @@
 import { fromWebSocket, toWebSocket } from 'most-w3msg'
 
-export const wsUrl = 'ws://496ae7d6.ngrok.io/ws'
+export const wsUrl = 'ws://10ac6e2c.ngrok.io/ws'
 
 export const conn = new WebSocket(wsUrl)
 
