@@ -5,6 +5,7 @@ import {
 const startState = {
   text: '',
   send: '',
+  author: '',
   chatMsgs: []
 }
 
@@ -32,6 +33,12 @@ const chat = (state = startState, action) => {
     return {
       ...state,
       chatMsgs: normalizeChatData(value.messages)
+    }
+    case 'SET_AUTHOR': {
+      return {
+          ...state,
+          authorValue: action.authorValue,
+      };
     }
   default:
     return state

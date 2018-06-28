@@ -3,13 +3,15 @@ import { ChatInput } from '../blocks/ChatInput.js'
 import { connect } from 'react-redux'
 import { MessagesView } from './MessagesView.js'
 import { ScrollToBottom } from '../blocks/ScrollToBottom.js'
+import {AuthorInput} from "../blocks/AuthorInput";
 
 const ChatView = (props) => {
   const { store } = props
 
-  const { setMsg, sendMsg } = props.store
+  const { setMsg, sendMsg, setAuthor } = props.store
 
   const value = store.chat.text
+  const authorValue = store.chat.authorValue;
   const messages = store.chat.chatMsgs || []
 
   const messagesView = <ScrollToBottom className="halko">
@@ -20,9 +22,14 @@ const ChatView = (props) => {
                                    sendMsg={sendMsg}
                                    setMsg={setMsg} />
 
+  const authorInputView = <AuthorInput
+    value={authorValue}
+    setAuthor={setAuthor}
+  />
 
   return (
   <div>
+    {authorInputView}
     { messagesView }
     <div style={{height: 4 * 8}}></div>
     { chatInputView }

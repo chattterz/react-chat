@@ -13,3 +13,10 @@ export const setChatValue = messages => ({
   messages: messages,
   source: 'slack'
 })
+
+export const setAuthor = (authorValue) => {
+  return {
+    type: 'SET_AUTHOR',
+    authorValue,
+  }
+}

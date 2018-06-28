@@ -1,13 +1,10 @@
 import test from 'ava'
 import React from 'react'
-import ReactDOM from 'react-dom'
 import { shallow, mount, configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
-import { Generator, gen } from '../test-env/testcheck'
+import { gen } from '../test-env/testcheck'
 import { check } from '../test-env/ava-check'
-import { MessagesView, MsgView } from './MessagesView.js'
-import ListItem from '@material-ui/core/ListItem'
-import List from '@material-ui/core/List'
+import {AuthorInput} from '../blocks/AuthorInput';
 
 configure({ adapter: new Adapter() })
 
@@ -32,12 +29,13 @@ test('MessagesView renders all given messages',
                })
              )
 
+
              const MountedComponent =
-                   shallow(<MessagesView messages={messages}/>)
+                   shallow(<AuthorInput value={'Radek'}/>)
 
-             t.is(MountedComponent.find(List).length, 1)
 
-             const msgs = MountedComponent.find(ListItem)
+               console.log(`${MountedComponent.prop('value')} === Radek`)
 
-             t.is(msgs.length, messages.length)
+               t.is(MountedComponent.prop('value'), 'Radek');
+
            }))
