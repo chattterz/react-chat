@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { createEpicMiddleware, combineEpics, selectArray, select } from 'redux-most'
+import {
+  createEpicMiddleware, combineEpics, selectArray, select
+} from 'redux-most'
 import { compose } from 'ramda'
 import { map, fromPromise, of, from } from 'most'
 import { toWebSocket } from './ws.js'
@@ -35,9 +37,17 @@ const sendWsEpic = action$ => action$
   }))
 
 
+const delayedEpic = action$ => action$
+  .thru(select('SEND_MSG'))
+  .map(_ => ({
+    type: 'DELAYED_ACTION'
+  }))
+
+
 const rootEpic = combineEpics([
   receiveWsEpic,
-  sendWsEpic
+  sendWsEpic,
+  delayedEpic
 ])
 
 const epicMiddleware = createEpicMiddleware(rootEpic)
