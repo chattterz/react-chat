@@ -22,20 +22,14 @@ test('MessagesView renders all given messages',
      check({ times: 200 },
            gen.array(messagesGenerator, { minSize: 2, maxSize: 10 }),
            (t, messages) => {
-             messages = messages.map(
-               msg => ({
-                 ...msg,
-                 time: new Date(2018, msg.date[0], msg.date[1])
-               })
-             )
 
 
              const MountedComponent =
-                   shallow(<AuthorInput value={'Radek'}/>)
+                   mount(<AuthorInput value={'Radek'}/>)
 
 
                console.log(`${MountedComponent.prop('value')} === Radek`)
 
-               t.is(MountedComponent.prop('value'), 'Radek');
+               t.is(MountedComponent.find('input').to.have.val(), 'Radek');
 
            }))
