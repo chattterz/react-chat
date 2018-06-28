@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import { shallow, mount, configure } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import App, { TestComponent, TestComponent2, halko } from './App'
+import UsernameChatInput from './components/UsernameChatInput'
 import { Generator, gen } from './test-env/testcheck'
 import { check } from './test-env/ava-check'
 
@@ -26,5 +27,6 @@ test('Component2 also contains proper header', (t) => {
 
 const author = 'dupa';
 test('Test lube', (t) => {
-
+  const wrapper = mount(<UsernameChatInput author={author} setAuthor={() => {}}/>)
+  t.is(wrapper.find('input').props().value, author)
 })
