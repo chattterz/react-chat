@@ -31,9 +31,9 @@ const messages = [
 ]
 
 
-var filteredMessages = 
-  messages.filter(
-    (element) => 
-    element.date.getTime() >= new Date(2015, 1, 1, 0).getTime() && 
-    element.date.getTime() <= new Date().getTime()
-  );
+const filteredMessages =
+      messages.filter(
+        (element) =>
+          element.date.getTime() >= new Date(2015, 1, 1, 0).getTime() &&
+          element.date.getTime() <= new Date().getTime()
+      );

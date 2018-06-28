@@ -101,6 +101,17 @@ export const TestComponent = () => (
   </div>
 )
 
+export const TestComponent2 = ({ headerText }) => (
+  <section>
+    <div style={{marginLeft: 4 * 8, marginRight: 4 * 8}}>
+      <header>
+        <h2>{ headerText }</h2>
+        <h3>{ halko }</h3>
+      </header>
+    </div>
+  </section>
+)
+
 store.dispatch({
   type: 'START_APP'
 })

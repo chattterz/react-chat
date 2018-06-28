@@ -16,6 +16,7 @@
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.5",
     "redux-most": "^0.7.0",
+    "sinon": "^6.0.1",
     "testcheck": "^1.0.0-rc.2"
   },
   "scripts": {
