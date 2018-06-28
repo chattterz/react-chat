@@ -17,3 +17,7 @@ test('shallow', (t) => {
 test('runs 10 times', check({ times: 10 }, gen.posInt, (t, n) => {
   t.true(n >= 0)
 }))
+
+test('runs 20 times', check({ times: 10 }, gen.int, gen.int, (t, a, b) => {
+  t.is(a + b === b + a, true)
+}))
