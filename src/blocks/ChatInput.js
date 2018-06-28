@@ -12,8 +12,8 @@ const submitMsg = action => event => {
   action()
 }
 
-export const ChatInput = ({ value, sendMsg, setMsg }) => (
-  <form onSubmit={submitMsg(_ => sendMsg(value))}
+export const ChatInput = ({ value, sendMsg, setMsg, author}) => (
+  <form onSubmit={submitMsg(_ => sendMsg(value, author))}
         className="submit-form">
     <input type="text"
            value={value}

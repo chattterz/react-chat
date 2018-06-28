@@ -15,6 +15,11 @@ const chat = (state = startState, action) => {
       ...state,
       text: action.text
     }
+  case 'SET_AUTHOR':
+      return {
+          ...state,
+          author: action.text
+      }
   case 'SEND_MSG':
     return {
       ...state,

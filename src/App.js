@@ -59,20 +59,26 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(epicMiddleware))
 )
 
-const prepareMsg = value => ({
-  author: 'current author',
-  msg: value
-})
+const prepareMsg = (msgWithAuthor) =>
+
+{
+    debugger;
+    return {
+  author: msgWithAuthor.author,
+  msg: msgWithAuthor.msg
+}
+
+}
 
 const streamOfMsgToSend = create((add) => {
   store.subscribe(() => {
-    const msg = store.getState().chat.send
-    add(msg)
+    const msg = store.getState().chat.send; const author = store.getState().chat.author;
+    add({msg,author})
   })
 
 	return () => null
 }).skipRepeats()
-  .filter(msg => msg.length > 0)
+  .filter(msg => msg.msg.length > 0)
   .map(prepareMsg)
   .map(x => JSON.stringify(x))
 
