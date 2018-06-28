@@ -10,26 +10,40 @@ import sinon from 'sinon'
 
 configure({ adapter: new Adapter() })
 
-test('ScrollToBottom calls componentDidMount',
+test('ScrollToBottom gets ',
      (t) => {
-       sinon.spy(ScrollToBottom.prototype, 'componentDidMount')
+       const spy = sinon.spy(ScrollToBottom.prototype, 'componentDidUpdate')
 
-       const wrapper = mount(<ScrollToBottom><div></div></ScrollToBottom>);
+       const firstChildren = (
+           <div>
+           <div key={1}></div>
+           </div>
+       )
 
-       t.true(ScrollToBottom.prototype.componentDidMount.calledOnce)
-     })
+       const wrapper = mount(<ScrollToBottom>
+                             { firstChildren }
+                             </ScrollToBottom>)
 
-test('ScrollToBottom calls getSnapshotBeforeUpdate on new props',
-     (t) => {
-       const spy = sinon.spy(ScrollToBottom.prototype, 'getSnapshotBeforeUpdate')
 
-       const wrapper = mount(<ScrollToBottom><div></div></ScrollToBottom>);
-
-       t.false(spy.calledOnce)
+       const newChildren = (
+           <div>
+           <div key={1}></div>
+           <div key={2}></div>
+           <div key={7}></div>
+           </div>
+       )
 
        wrapper.setProps({
-         children: (<div>new children!</div>)
+         children: newChildren
        })
 
        t.true(spy.calledOnce)
+
+       t.true(spy.calledWith(
+         sinon.match.object,
+         sinon.match(value => value === null),
+         sinon.match(value => {
+           return typeof value === 'object' &&
+             typeof value.newChildren === 'boolean'
+         })))
      })

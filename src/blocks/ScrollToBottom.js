@@ -6,8 +6,12 @@ const scrollToBottom = ({ current }) => {
   }
 }
 
-const getMessagesFromProps = props =>
-  props.children.props.children.length
+const getLastMessageKeyFromProps = props => {
+  const messages = props.children.props.children
+  const lastMessage = messages[messages.length - 1]
+
+  return lastMessage && lastMessage.key
+}
 
 export class ScrollToBottom extends React.Component {
   constructor(props) {
@@ -17,8 +21,11 @@ export class ScrollToBottom extends React.Component {
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
+    const newChildren = getLastMessageKeyFromProps(this.props) !==
+      getLastMessageKeyFromProps(prevProps)
+
     return {
-      newChildren: getMessagesFromProps(this.props) !== getMessagesFromProps(prevProps)
+      newChildren
     }
   }
 
