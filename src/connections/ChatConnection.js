@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { sendMsg, setMsg } from '../state-managment/actions.js'
+import { sendMsg, setMsg, setAuth } from '../state-managment/actions.js'
 import { bindActionCreators } from 'redux'
 import { fromWebSocket, toWebSocket } from 'most-w3msg'
 import { from } from 'most'
@@ -12,7 +12,7 @@ const ChatConnection = View => store => (
 
 const ChatConnectionFactory = view =>
   connect(({ chat }) => ({ chat }),
-          (dispatch) => bindActionCreators({ sendMsg, setMsg }, dispatch))
+          (dispatch) => bindActionCreators({ sendMsg, setMsg, setAuth }, dispatch))
 (ChatConnection(view))
 
 export default ChatConnectionFactory

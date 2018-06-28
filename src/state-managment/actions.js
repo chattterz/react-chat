@@ -8,6 +8,11 @@ export const sendMsg = val => ({
   text: val
 })
 
+export const setAuth = val => ({
+  type: 'SET_AUTHOR',
+  author: val
+})
+
 export const setChatValue = messages => ({
   type: 'SET_CHAT_VALUE',
   messages: messages,
